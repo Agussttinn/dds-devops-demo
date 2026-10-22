@@ -36,11 +36,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          # Acá listamos AMBOS registros
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             ${{ secrets.DOCKERHUB_USERNAME }}/dds-devops-demo
-          # Acá le pedimos que genere la etiqueta SHA y la etiqueta "latest"
           tags: |
             type=sha,format=short
             type=raw,value=latest
