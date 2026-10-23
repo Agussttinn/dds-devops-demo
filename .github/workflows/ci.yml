@@ -29,7 +29,6 @@ jobs:
       - name: Iniciar sesión en Docker Hub
         uses: docker/login-action@v3
         with:
-          
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
@@ -51,3 +50,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Avisar a Render para desplegar
+        run: curl "${{ secrets.DEPLOY_RENDER }}"
